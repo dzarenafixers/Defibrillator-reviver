@@ -1,7 +1,7 @@
-﻿namespace DesfribilatorPlugin
-{
-    using Exiled.API.Interfaces;
+﻿using Exiled.API.Interfaces;
 
+namespace Desfribalator
+{
     public class Translation : ITranslation
     {
         public string MessageWhenYouRevive { get; private set; } = "You feel like you recover your life\n<color=#028EDC>{PlayerName} has revived you with a defibrillator!</color>";

@@ -1,19 +1,17 @@
-﻿namespace DesfribilatorPlugin
-{
-    using Exiled.API.Features;
-    using Exiled.API.Enums;
-    using System.Collections.Generic;
-    using PlayerRoles;
-    using System.Runtime.InteropServices;
-    using System;
-    using MEC;
-    using Exiled.Events.Handlers;
-    using Exiled.CustomItems.API.Features;
+﻿using System;
+using System.Collections.Generic;
+using Desfribalator;
+using Exiled.API.Enums;
+using Exiled.API.Features;
+using Exiled.CustomItems.API.Features;
+using MEC;
 
+namespace Defibrillator
+{
     public class Plugin : Plugin<Config, Translation>
     {
         public override string Name => "Defibrillator";
-        public override string Prefix => "MONCEF50G";
+        public override string Prefix => "defibrillator";
         public override string Author => "@dzarenafixer";
         public override Version Version { get; } = new Version(1, 4, 0);
         public override PluginPriority Priority => PluginPriority.Default;
@@ -38,7 +36,7 @@
             EventHandlers = null;
             Instance = null;
             Exiled.Events.Handlers.Server.RoundStarted -= EventHandlers.OnStart;
-            Exiled.Events.Handlers.Server.RoundEnded += EventHandlers.OnRoundEnd;
+            Exiled.Events.Handlers.Server.RoundEnded -= EventHandlers.OnRoundEnd;
 
             CustomItem.UnregisterItems();
         }

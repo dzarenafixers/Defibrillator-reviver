@@ -1,17 +1,13 @@
-﻿using System;
-using Exiled.API.Features;
-using System.Collections.Generic;
-using System.Linq;
-using MEC;
-using DesfribilatorPlugin;
-using UnityEngine;
-using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Server;
+﻿using System.Collections.Generic;
 using Exiled.API.Enums;
-using Exiled.CustomRoles.API.Features;
+using Exiled.API.Features;
+using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Server;
+using MEC;
+using UnityEngine;
 
-namespace DesfribilatorPlugin
+namespace Defibrillator
 {
 
     public class EventHandler
@@ -25,7 +21,7 @@ namespace DesfribilatorPlugin
             Plugin.Instance.Coroutines.Add(Timing.RunCoroutine(Plugin.Instance.EventHandlers.TimeOfGrace()));
             foreach (RoomType room in plugin.Config.RoomTypes)
             {
-                CustomItem.Get($"{plugin.Config.Desfri.Name}").Spawn(Room.Get(room).Position + new Vector3(0, 1f, 0));
+                CustomItem.Get($"{plugin.Config.Defibrillator.Name}").Spawn(Room.Get(room).Position + new Vector3(0, 1f, 0));
             }
         }
 
