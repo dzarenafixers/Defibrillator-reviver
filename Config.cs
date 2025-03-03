@@ -1,17 +1,11 @@
-﻿using Exiled.Events.Commands.Reload;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Exiled.API.Enums;
+using Exiled.API.Interfaces;
+using PlayerRoles;
 
-namespace DesfribilatorPlugin
+namespace Defibrillator
 {
-    using Exiled.API.Interfaces;
-
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Security.Policy;
-    using UnityEngine;
-    using Exiled.API.Enums;
-    using PlayerRoles;
-    using Exiled.API.Features;
-
     public class Config : IConfig
     {
         public bool IsEnabled { get; set; } = true;
@@ -62,6 +56,6 @@ namespace DesfribilatorPlugin
         };
 
         [Description("Desfribilador/Desfribilator Config:")]
-        public Desfribilador Desfri { get; private set; } = new Desfribilador();
+        public Defibrillator Defibrillator { get; private set; } = new Defibrillator();
     }
 }
