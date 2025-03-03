@@ -93,7 +93,7 @@ namespace Defibrillator
                             else
                             {
 
-                                if (!Plugin.Instance.Config.SCPBlacklisted.Contains(closestRagdoll.Role))
+                                if (!Plugin.Instance.Config.SCPBlacklisted.Contains(closestRagdoll.Role) && Plugin.Instance.Config.SCPRevive)
                                 {
                                     Extensions.RespawnSCP(ev.Player, closestRagdoll);
                                     ev.Item.Destroy();
