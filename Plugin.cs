@@ -13,10 +13,10 @@ namespace Defibrillator
         public override string Name => "Defibrillator";
         public override string Prefix => "defibrillator";
         public override string Author => "@dzarenafixer";
-        public override Version Version { get; } = new Version(1, 4, 0);
+        public override Version Version { get; } = new Version(1, 4, 1);
         public override PluginPriority Priority => PluginPriority.Default;
         public EventHandler EventHandlers;
-        public List<CoroutineHandle> Coroutines = new List<CoroutineHandle>();
+        public readonly List<CoroutineHandle> Coroutines = new List<CoroutineHandle>();
 
         public static Plugin Instance;
 
@@ -33,10 +33,10 @@ namespace Defibrillator
 
         public override void OnDisabled()
         {
-            EventHandlers = null;
-            Instance = null;
             Exiled.Events.Handlers.Server.RoundStarted -= EventHandlers.OnStart;
             Exiled.Events.Handlers.Server.RoundEnded -= EventHandlers.OnRoundEnd;
+            EventHandlers = null;
+            Instance = null;
 
             CustomItem.UnregisterItems();
         }

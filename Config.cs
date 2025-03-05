@@ -27,20 +27,29 @@ namespace Defibrillator
             RoleTypeId.Scp106,
             RoleTypeId.Scp173,
         };
+
         [Description("Cooldown that all people will have to use the defibrillator after they have used one")]
         public int CooldownTime { get; set; } = 120;
-        [Description("Percentage of life they will have when they revive a player for the maximum life (e.g. 80 and they have 120 they will have 96 HP)")]
+
+        [Description(
+            "Percentage of life they will have when they revive a player for the maximum life (e.g. 80 and they have 120 they will have 96 HP)")]
         public float PercentageOfHPWhenRevived { get; set; } = 75;
+
         [Description("List Of Effects and time when someone revives him")]
         public Dictionary<EffectType, float> RevivingEffects { get; set; } = new Dictionary<EffectType, float>
         {
             { EffectType.AmnesiaVision, 25 },
             { EffectType.Burned, 10 },
         };
-        [Description("Cooldown that all people will have to use the defibrillator after they have used one to revive an SCP")]
+
+        [Description(
+            "Cooldown that all people will have to use the defibrillator after they have used one to revive an SCP")]
         public int CooldownTimeSCP { get; set; } = 220;
-        [Description("Percentage of life they will have when they revive a SCP for the maximum life (e.g. 80 and they have 120 they will have 96 HP)")]
+
+        [Description(
+            "Percentage of life they will have when they revive a SCP for the maximum life (e.g. 80 and they have 120 they will have 96 HP)")]
         public float PercentageOfHPWhenSCPRevived { get; set; } = 30;
+
         [Description("List Of Effects and time when someone revives him(For SCPs)")]
         public Dictionary<EffectType, float> RevivingEffectsSCPs { get; set; } = new Dictionary<EffectType, float>
         {
@@ -48,7 +57,7 @@ namespace Defibrillator
         };
 
         [Description("list of rooms to spawn the defibrillator inside")]
-        public List<RoomType> RoomTypes { get; set; } = new List<RoomType> 
+        public List<RoomType> RoomTypes { get; set; } = new List<RoomType>
         {
             RoomType.LczArmory,
             RoomType.HczArmory,

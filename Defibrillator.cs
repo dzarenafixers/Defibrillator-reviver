@@ -76,14 +76,15 @@ namespace Defibrillator
                     closestDistance = distance;
                 }
             }
+
             if (Plugin.Instance.EventHandlers.TimeGrace == 0)
             {
                 if (Plugin.Instance.EventHandlers.Cooldown == 0)
                 {
                     if (closestRagdoll != null)
                     {
-
-                        if (closestRagdoll.Owner.IsDead && !closestRagdoll.Owner.IsHost && closestRagdoll.Owner != null && Player.List.Contains(ev.Player))
+                        if (closestRagdoll.Owner != null && closestRagdoll.Owner.IsDead &&
+                            !closestRagdoll.Owner.IsHost && Player.List.Contains(ev.Player))
                         {
                             if (closestRagdoll.Role.GetTeam() != Team.SCPs)
                             {
@@ -92,10 +93,10 @@ namespace Defibrillator
                             }
                             else
                             {
-
-                                if (!Plugin.Instance.Config.SCPBlacklisted.Contains(closestRagdoll.Role) && Plugin.Instance.Config.SCPRevive)
+                                if (!Plugin.Instance.Config.SCPBlacklisted.Contains(closestRagdoll.Role) &&
+                                    Plugin.Instance.Config.SCPRevive)
                                 {
-                                    Extensions.RespawnSCP(ev.Player, closestRagdoll);
+                                    Extensions.RespawnScp(ev.Player, closestRagdoll);
                                     ev.Item.Destroy();
                                 }
                                 else
@@ -116,18 +117,21 @@ namespace Defibrillator
                         ev.IsAllowed = false;
                         ev.Player.ShowHint($"{Plugin.Instance.Translation.hintwhenthereisnoragdollnearby}");
                     }
-
                 }
                 else
                 {
                     ev.IsAllowed = false;
-                    ev.Player.ShowHint($"{Plugin.Instance.Translation.CooldownHint.Replace("{Cooldown}", Plugin.Instance.EventHandlers.Cooldown.ToString())}", 3);
+                    ev.Player.ShowHint(
+                        $"{Plugin.Instance.Translation.CooldownHint.Replace("{Cooldown}", Plugin.Instance.EventHandlers.Cooldown.ToString())}",
+                        3);
                 }
             }
             else
             {
                 ev.IsAllowed = false;
-                ev.Player.ShowHint($"{Plugin.Instance.Translation.TimeOfGrace.Replace("{Time}", Plugin.Instance.EventHandlers.TimeGrace.ToString())}", 3);
+                ev.Player.ShowHint(
+                    $"{Plugin.Instance.Translation.TimeOfGrace.Replace("{Time}", Plugin.Instance.EventHandlers.TimeGrace.ToString())}",
+                    3);
             }
         }
     }
