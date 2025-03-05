@@ -2,37 +2,26 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.CustomItems.API.Features;
-using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
 using MEC;
 using UnityEngine;
 
 namespace Defibrillator
 {
-
     public class EventHandler
     {
-        private Plugin plugin = Plugin.Instance;
+        private Plugin _plugin = Plugin.Instance;
         public int Cooldown = 0;
         public int TimeGrace = Plugin.Instance.Config.GraceTime;
+
         public void OnStart()
         {
             TimeGrace = Plugin.Instance.Config.GraceTime;
             Plugin.Instance.Coroutines.Add(Timing.RunCoroutine(Plugin.Instance.EventHandlers.TimeOfGrace()));
-            foreach (RoomType room in plugin.Config.RoomTypes)
+            foreach (RoomType room in _plugin.Config.RoomTypes)
             {
-                CustomItem.Get($"{plugin.Config.Defibrillator.Name}").Spawn(Room.Get(room).Position + new Vector3(0, 1f, 0));
-            }
-        }
-
-        public void OnHurting(HurtingEventArgs ev)
-        {
-            if (ev.Player.SessionVariables.ContainsKey("DesInv"))
-            {
-                if (ev.DamageHandler.Type != DamageType.Warhead || ev.DamageHandler.Type != DamageType.Decontamination)
-                {
-                    ev.IsAllowed = false;
-                }
+                CustomItem.Get($"{_plugin.Config.Defibrillator.Name}")
+                    ?.Spawn(Room.Get(room).Position + new Vector3(0, 1f, 0));
             }
         }
 
@@ -42,12 +31,13 @@ namespace Defibrillator
                 Timing.KillCoroutines(coroutine);
             Plugin.Instance.Coroutines.Clear();
             Cooldown = 0;
+            Cooldown = 0;
             TimeGrace = 120;
         }
 
-        public IEnumerator<float> TimeOfGrace()
+        private IEnumerator<float> TimeOfGrace()
         {
-            for (; ; )
+            for (;;)
             {
                 yield return Timing.WaitForSeconds(1f);
                 TimeGrace--;
@@ -59,13 +49,12 @@ namespace Defibrillator
                         Timing.KillCoroutines(coroutine);
                     Plugin.Instance.Coroutines.Clear();
                 }
-
-
             }
         }
+
         public IEnumerator<float> TimerCooldown()
         {
-            for (; ; )
+            for (;;)
             {
                 yield return Timing.WaitForSeconds(1f);
                 Cooldown--;
@@ -77,8 +66,6 @@ namespace Defibrillator
                         Timing.KillCoroutines(coroutine);
                     Plugin.Instance.Coroutines.Clear();
                 }
-
-
             }
         }
     }
